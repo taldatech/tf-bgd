@@ -1,4 +1,5 @@
 ![title](https://github.com/taldatech/tf-bgd/blob/master/imgs/bgd_logo.png)
+![subtitle](https://github.com/taldatech/tf-bgd/blob/master/imgs/bgd_subtitle.png)
 # tf-bgd
 ## Bayesian Gradient Descent Algorithm Model for TensorFlow
 Python and Tensorflow implementation of the Bayesian Gradient Descent algorithm and model
