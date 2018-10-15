@@ -108,7 +108,7 @@ Using the model is simple, there are multiple examples in the repository. Basic 
 
 This little example will train a regression model as described in the background.
 
-The testing (predicting) is performed on 2000 points in [-6,6], which is outside the training region ([-4,4], 20 points). It will also output the maximum uncertainty (maximum standard deviation for the output), where we want more uncertainty in uncharted regions to show the flexibility of the network (the reddish zones in the graph).
+The testing (predicting) is performed on 2000 points in [-6,6], which has samples outside the training region ([-4,4], 20 points). It will also output the maximum uncertainty (maximum standard deviation for the output), where we want more uncertainty in uncharted regions to show the flexibility of the network (the reddish zones in the graph).
 
 You should use the `bgd_regression_example.py` file with the following arguments:
 
@@ -130,23 +130,30 @@ You should use the `bgd_regression_example.py` file with the following arguments
 
 ## Training and Testing
 
-Examples to start the example:
+Examples to run `bgd_regression_example.py`:
 
 * Note: if there are checkpoints in the `/model/` dir, and the model parameters are the same, training will automatically resume from the latest checkpoint (you can choose the exact checkpoint number by editing the `checkpoint` file in the `/model/` dir with your favorite text editor).
 
-`python pass2path_v2.py -t -q -d ./dataset_tr.csv -b 256 -i 3 -r 0.001 -k 0.6 -s 100 -e 3 -l 3`
+`python bgd_regression_example.py -k 10 -e 40 -b 1 -n 150 -l 1 -t 300.0 -g 0.005`
 
-`python pass2path_v2.py -t -d ./dataset_tr.csv -b 128 -i 2 -r 0.0003 -k 0.5 -s 1000 -e 3 -l 4 -c gru`
-
-`python pass2path_v2.py -t -d ./dataset_tr.csv -b 50 -i 4 -r 0.001 -k 0.7 -s 1000 -e 10 -l 4 -z 100 -c gru`
-
-`python pass2path_v2.py -t -d ./dataset_tr.csv -b 10 -i 3 -r 0.0001 -k 0.6 -s 100 -e 10 -l 3 -z 128 -m 150 -c lstm`
-
-`python pass2path_v2.py -t -d ./dataset_tr.csv -b 10 -i 3 -r 0.0001 -k 0.6 -s 100 -e 10 -l 3 -z 128 -m 150 -c lstm -f 3000`
+`python bgd_regression_example.py -u -w -k 15 -e 80 -b 5 -n 200 -l 2 -t 50.0 -g 0.003`
 
 Model's checkpoints are saved in `/model/` dir.
 
 ## GPU
-don't forget to add CUDA...
+If you have `tensoflow-gpu` you can run the example (the session uses `tf.GPUOptions(allow_growth=True)` ), but make sure to choose the correct device:
+
+`os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID" ` (so the IDs match nvidia-smi)
+
+`os.environ["CUDA_VISIBLE_DEVICES"] = "2"`  ("0, 1" for multiple)
+
 ## Tensorboard
-(Graphs and errors, write log)
+
+You can easily use `tensorboard` when running `bgd_regression_example.py`. You should run it with
+`-w` flag (to save a log file). This creates a `tf_logs` directory. To run `tensorboard`:
+
+`cd /path/to/dir/with/bgd_regression_example.py`
+
+`tensorboard --logdir=./tf_logs` 
+
+![tensorboard](https://github.com/taldatech/tf-bgd/blob/master/imgs/tensorboard.png)
