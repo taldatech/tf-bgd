@@ -106,31 +106,27 @@ Using the model is simple, there are multiple examples in the repository. Basic 
 
 ## Main Example App Usage:
 
+This little example will train a regression model as described in the background.
+
+The testing (predicting) is performed on 2000 points in [-6,6], which is outside the training region ([-4,4], 20 points). It will also output the maximum uncertainty (maximum standard deviation for the output), where we want more uncertainty in uncharted regions to show the flexibility of the network (the reddish zones in the graph).
+
 You should use the `bgd_regression_example.py` file with the following arguments:
 
 |Argument                 | Description                                 |
 |-------------------------|---------------------------------------------|
 |-h, --help       | shows arguments description             |
-|-t, --train      | train pass2path model                   |
-|-p, --predict    | predict using a trained pass2path model |
-|-x, --test       | test (file) using a trained pass2path model |
-|-q, --residual| use residual connections between layers (training) |
-|-o, --save_pred| save predictions to a file when testing (testing) |
-|-d, --dataset| path to a `.csv` dataset (training, testing)|
-|-c, --cell_type| RNN cell type - `lstm` or `gru` (training, default: `lstm`) |
-|-s, --step| display step to show progress (training, default: 100) |
-|-e, --epochs| number of epochs to train the model (training, default: 80) |
-|-b, --batch_size| batch size to draw from the provided dataset (training, testing, default: 50) |
-|-z, --size| rnn size - number of neurons per layer (training, default: 128) |
-|-l, --layers| number of layers in the network (training, default: 3) |
-|-m, --embed| embedding size for sequences (training, default: 200) |
-|-w, --beam_width| beam width, number of predictions (testing, predicting, default: 10) |
-|-i, --edit_distance| maximum edit distance of password pairs to consider during training (training, default: 3) |
-|-f, --save_freq| frequency to save checkpoints of the model (training, default: 11500) |
-|-k, --keep_prob| keep probability = 1 - dropout probability (training, default: 0.8) |
-|-a, --password| predict passwords for this password (predicting, default: "password") |
-|-j, --checkpoint| model checkpoint number to use when testing (testing, predicting, default: latest checkpoint in model dir) |
-|-u, --unique_pred| number of unique predictions to generate when predicting from file (predicting, default: `beam_width`) |
+|-w, --write_log     | save log for tensorboard (error graphs, and the NN)  |
+|-u, --reset    | start training from scratch, deletes previous checkpoints |
+|-k, --num_sub_nets       | number of sub networks (K parameter), default: 10 |
+|-e, --epochs	| number of epochs to run, default: 40 |
+|-b, --batch_size| batch size for training, default: 1 |
+|-n, --neurons| number of hidden units, default: 100|
+|-l, --layers| number of layers in the network , default: 1 |
+|-t, --eta| eta parameter ('learning rate'), deafult: 50.0 |
+|-g, --sigma| sigma_0 parameter, default: 0.002 |
+|-f, --save_freq| frequency to save checkpoints of the model, default: 200 |
+|-r, --decay_rate| decay rate of eta (exponential scheduling), default: 1/10 |
+|-y, --decay_steps| decay steps fof eta (exponential scheduling), default: 10000 |
 
 ## Training and Testing
 
