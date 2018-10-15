@@ -17,7 +17,7 @@ The basic assumption is that in each step, the previous posterior distribution i
 We define the following:
 * ![equation](https://latex.codecogs.com/gif.latex?%24%5Cepsilon_i%24) - a Random Variable (RV) sampled from ![equation](https://latex.codecogs.com/gif.latex?%24N%280%2C1%29%24)
 * ![equation](https://latex.codecogs.com/gif.latex?%24%5Ctheta%24) - the weights which we wish to find their posterior distribution
-* ![equation]($\phi = (\mu,\sigma)$) - the parameters which serve as a condition for the distribution of ![equation](https://latex.codecogs.com/gif.latex?%24%5Ctheta%24)
+* ![equation](https://latex.codecogs.com/gif.latex?%5Cphi%20%3D%20%28%5Cmu%2C%5Csigma%29) - the parameters which serve as a condition for the distribution of ![equation](https://latex.codecogs.com/gif.latex?%24%5Ctheta%24)
 * ![equation](https://latex.codecogs.com/gif.latex?%24%5Cmu%24) - the mean of the weights' distribution, initially sampled from ![equation](https://latex.codecogs.com/gif.latex?N%280%2C%5Cfrac%7B2%7D%7Bn_%7Binput%7D%20&plus;%20n_%7Boutput%7D%7D%29)
 * ![equation](https://latex.codecogs.com/gif.latex?%5Csigma) - the STD (Variance's root) of the weights' distribution, initially set to a small constant.
 * ![equation](https://latex.codecogs.com/gif.latex?K) - the number of sub-networks
@@ -77,21 +77,36 @@ We wish to test the algorithm by learning ![equation](https://latex.codecogs.com
 |----------------------|----|
 |`Python`|  `3.6.6 (Anaconda)`|
 |`tensorflow`|  `1.10.0`|
-|`word2keypress`|  `-`|
+|`sklearn`|  `0.20.0`|
 |`numpy`|  `1.14.5`|
+|`matplotlib`| `3.0.0`|
 
 ## Basic Usage
+
+Using the model is simple, there are multiple examples in the repository. Basic methods:
+
+* `from bgd_model import BgdModel`
+* `model = BgdModel(config, 'train')`
+* `batch_acc_train = model.train(sess, X_batch, Y_batch)`
+* `batch_acc_test = model.calc_accuracy(sess, X_test, y_test)`
+* `model.save(sess, checkpoint_path, global_step=model.global_step)`
+* `model.restore(session, FLAGS.model_path)`
+* `results['predictions'] = model.predict(sess, inputs)`
+* `upper_confidence, lower_confidence = model.calc_confidence(sess, inputs)`
+
 
 ## Files in the repository
 
 |File name         | Purpsoe |
-|----------------------|----|
-|`trans_dict_2idx.json`|  Transformation to an index.|
+|----------------------|------|
+|`bgd_model.py`|  Includes the class for the BGD model from which you import|
+|`bgd_regression_example.py`| Usage example: simple regression as mentioned above|
+|`bgd_train.ipynb` | Jupyter Notebook with detailed explanation, derivations and graphs| 
 
 
-## Main Example App:
+## Main Example App Usage:
 
-You should only use the `pass2path_v2.py` file with the following arguments:
+You should use the `bgd_regression_example.py` file with the following arguments:
 
 |Argument                 | Description                                 |
 |-------------------------|---------------------------------------------|
