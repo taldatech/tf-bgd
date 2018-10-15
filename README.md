@@ -3,8 +3,11 @@
 # tf-bgd
 ## Bayesian Gradient Descent Algorithm Model for TensorFlow
 ![regress](https://github.com/taldatech/tf-bgd/blob/master/imgs/line.gif)
+
 Python and Tensorflow implementation of the Bayesian Gradient Descent algorithm and model
+
 ### Based on the paper "Bayesian Gradient Descent: Online Variational Bayes Learning with Increased Robustness to Catastrophic Forgetting and Weight Pruning" by Chen Zeno, Itay Golan, Elad Hoffer, Daniel Soudry
+
 Paper PDF: https://arxiv.org/abs/1803.10123
 
 ## Theoretical Background
@@ -12,7 +15,7 @@ Paper PDF: https://arxiv.org/abs/1803.10123
 The basic assumption is that in each step, the previous posterior distribution is used as the new prior distribution and that the parametric distribution is approximately a Diagonal Gaussian, that is, all the parameters of the weight vector $\theta$ are independent.
 
 We define the following:
-* $\epsilon_i$ - a Random Variable (RV) sampled from $N(0,1)$
+* ![equation](https://latex.codecogs.com/gif.latex?%24%5Cepsilon_i%24) - a Random Variable (RV) sampled from $N(0,1)$
 * $\theta$ - the weights which we wish to find their posterior distribution
 * $\phi = (\mu,\sigma)$ - the parameters which serve as a condition for the distribution of $\theta$
 * $\mu$ - the mean of the weights' distribution, initially sampled from $N(0,\frac{2}{n_{input} + n_{output}})$
