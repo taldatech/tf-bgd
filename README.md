@@ -1,6 +1,11 @@
 ![title](https://github.com/taldatech/tf-bgd/blob/master/imgs/bgd_logo.png)
 ![subtitle](https://github.com/taldatech/tf-bgd/blob/master/imgs/bgd_subtitle.png)
 # tf-bgd
+Video:
+
+Vimeo - https://vimeo.com/297651842
+
+YouTube - https://youtu.be/fa-xLXTzZ8I
 ## Bayesian Gradient Descent Algorithm Model for TensorFlow
 ![regress](https://github.com/taldatech/tf-bgd/blob/master/imgs/line.gif)
 
